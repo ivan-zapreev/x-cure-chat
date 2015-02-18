@@ -1,0 +1,112 @@
+
+-------------------------------------------------------------------------------------------------------
+
+select messageID, UID, COALESCE(nrep, 0) as replies from forum_messages
+join users on forum_messages.senderID = users.uid
+left join (select parentMessageID as pmid, COUNT(*) as nrep from forum_messages group by parentMessageID) c on forum_messages.messageID = c.pmid;
+
+*Join the forum message with te sender and with the number of direct replies to the forum message*
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT parentMessageID, MAX(updateDate) as latestUpdateDate from forum_messages group by parentMessageID;
+
+*Selets the latest update date of the message by the parentMessageID, i.e. for each message we get the date of its latest reply*
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT branchMessageID, MAX(updateDate) as latestUpdateDate from forum_messages group by branchMessageID;
+
+*Selets the latest update date of the message by the branchMessageID, i.e. for each branch (topic) we get a
+ date of the latest message posted to this topic*
+
+-------------------------------------------------------------------------------------------------------
+
+select parentMessageID as pmid, COUNT(*) as nrep, latestUpdateDate from forum_messages
+left join ( select parentMessageID as npmid, MAX(updateDate) as latestUpdateDate from forum_messages group by npmid) lup on lup.npmid = parentMessageID group by parentMessageID;
+
+*Select the message id that have replies, the number of the replies and the date of the latest reply*
+
+-------------------------------------------------------------------------------------------------------
+
+select messageID, UID, COALESCE(nrep, 0) as replies, latestUpdateDate from forum_messages
+join users on forum_messages.senderID = users.uid
+left join ( select parentMessageID as pmid, COUNT(*) as nrep from forum_messages group by parentMessageID ) c on forum_messages.messageID = c.pmid
+left join ( select parentMessageID as npmid, MAX(updateDate) as latestUpdateDate from forum_messages group by npmid ) lup on lup.npmid = forum_messages.messageID
+where messageID != 1;
+
+*get for each message its id, the id of the person who sent the message plus the number of replies to this message and the date of the latest reply to this message*
+
+-------------------------------------------------------------------------------------------------------
+
+select messageID, UID, COALESCE(nrep, 0) as replies, latestUpdateDate from forum_messages
+join users on forum_messages.senderID = users.uid
+left join ( select branchMessageID as bmid, COUNT(*) as nrep from forum_messages group by branchMessageID ) c on forum_messages.messageID = c.bmid
+left join ( select branchMessageID as nbmid, MAX(updateDate) as latestUpdateDate from forum_messages group by nbmid ) lup on lup.nbmid = forum_messages.messageID
+where parentMessageID = 1 and messageID != 1;
+
+*Get the author of the topic (branch), the number of replies in the branch and the date of the last reply to the branch*
+
+(select messageID, branchMessageID, parentMessageID from forum_messages where parentMessageID != 1;)
+THe above selets the messages that have parent message other than the root message, i.e. we only select the true messages, but not the topics (branches)
+
+-------------------------------------------------------------------------------------------------------
+
+select messageID, mst.UID, COALESCE(nrep, 0) as replies, latestUpdateDate, lmst.login from forum_messages
+join users as mst on forum_messages.senderID = mst.uid
+left join ( select parentMessageID as pmid, COUNT(*) as nrep from forum_messages group by parentMessageID ) c on forum_messages.messageID = c.pmid
+left join ( select parentMessageID as npmid, senderID as lms, MAX(updateDate) as latestUpdateDate from forum_messages group by npmid, lms ) lup on lup.npmid = forum_messages.messageID
+left join users as lmst on lup.lms = lmst.uid
+where messageID != 1;
+
+select messageID, mst.UID, COALESCE(nrep, 0) as replies, latestUpdateDate, lmst.login from forum_messages
+join users as mst on forum_messages.senderID = mst.uid
+left join ( select parentMessageID as pmid, COUNT(*) as nrep from forum_messages group by parentMessageID ) c on forum_messages.messageID = c.pmid
+left join ( select parentMessageID as npmid, senderID as lms, MAX(updateDate) as latestUpdateDate from forum_messages group by npmid ) lup on lup.npmid = forum_messages.messageID
+left join users as lmst on lup.lms = lmst.uid
+where messageID != 1;
+
+select messageID as mid, npmid, lms, lud from forum_messages join (select parentMessageID as npmid, senderID as lms, MAX(updateDate) as lud from forum_messages group by npmid, lms order by lud DESC) t on messageID=t.npmid group by messageID;
+
+**
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT a.messageID, SUM( COALESCE(c.count, 0) ) AS count FROM forum_messages AS a LEFT JOIN (SELECT b.messagePathID, COUNT(b.messageID) AS count FROM forum_messages AS b GROUP BY b.messagePathID) AS c ON c.messagePathID LIKE CONCAT("%.", a.messageID, ".%") OR c.messagePathID LIKE CONCAT(a.messageID, ".%") GROUP BY messageID;
+
+*COUNT THE NUMBER OF SUB-MESSAGES OF EACH FORUM MESSAGE*
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT f.messagePathID, e.senderID, f.max_date FROM forum_messages AS e INNER JOIN ( SELECT d.messagePathID, MAX(d.updateDate) AS max_date FROM forum_messages AS d GROUP BY d.messagePathID) AS f ON ( e.updateDate = f.max_date ) AND ( e.messagePathID = f.messagePathID ) ;
+
+*SELECT THE LAST UPDATE DATE AND THE LAST REPLY SENDER ID FOR THE DIRECT CHILDREN OF THE MESSGE DEFINED BY THE MESSAGE PATH ID*
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT messagePathID, senderID, updateDate FROM forum_messages WHERE messagePathID LIKE CONCAT("%.","15", ".%") ORDER BY updateDate DESC LIMIT 0,1;
+
+*THIS IS HOW WE CAN DO IT FOR A GIVEN FORUM MESSAGE*
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT b.messageID, a.senderID, a.updateDate FROM forum_messages AS b INNER JOIN (
+	( SELECT messagePathID, senderID, updateDate FROM forum_messages WHERE messagePathID LIKE CONCAT("%.",15, ".%") ORDER BY updateDate DESC LIMIT 0,1 )
+	UNION
+	( SELECT messagePathID, senderID, updateDate FROM forum_messages WHERE messagePathID LIKE CONCAT("%.",10, ".%") ORDER BY updateDate DESC LIMIT 0,1 )
+	UNION
+	( SELECT messagePathID, senderID, updateDate FROM forum_messages WHERE messagePathID LIKE CONCAT("%.",12, ".%") ORDER BY updateDate DESC LIMIT 0,1 )
+) AS a ON a.messagePathID LIKE CONCAT("%.", b.messageID, ".");
+
+*THIS TAKES THE LAST SENDER AND LAST UPDATE DATE FOR EACH SUBTREEE OF THE SPECIFIED NODES*
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT SQL_CALC_FOUND_ROWS a.messageID, c.total FROM forum_messages AS a LEFT JOIN (SELECT FOUND_ROWS() AS total) c ON TRUE LIMIT 10;
+
+*Allows to make a select with LIMIT and left join it with the total number of selected entries *
+
+-------------------------------------------------------------------------------------------------------
+
+
+

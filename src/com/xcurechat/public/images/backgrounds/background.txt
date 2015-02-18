@@ -1,0 +1,7 @@
+In order to compress png images on Linux:
+
+A) Without loosing quality do:
+	pngcrush -brute -e "_out.png" *.png
+
+B) With loosing some quality do:
+	pngnq -e "_out.png" background_*.png

@@ -1,0 +1,80 @@
+<Context path="/" docBase="chat" debug="0" reloadable="true" crossContext="true" privileged="true">
+	<Logger className="org.apache.catalina.logger.FileLogger" prefix="localhost_XCureChat_log." suffix=".txt" timestamp="true"/>
+	
+	<!-- maxActive: Maximum number of dB connections in pool. Make sure you
+	configure your mysqld max_connections large enough to handle
+	all of your db connections. Set to 0 for no limit. -->
+
+	<!-- maxIdle: Maximum number of idle dB connections to retain in pool.
+	Set to 0 for no limit. -->
+	
+	<!-- Don't use autoReconnect=true, it's going away eventually
+	and it's a crutch for older connection pools that couldn't
+	test connections. You need to decide whether your application
+	is supposed to deal with SQLExceptions (hint, it should), and
+	how much of a performance penalty you're willing to pay
+	to ensure 'freshness' of the connection -->
+
+	<!-- validationQuery: The most conservative approach is to test
+	connections before they're given to your application. For most
+	applications this is okay, the query used above is very small
+	and takes no real server resources to process, other than the
+	time used to traverse the network. If you have a high-load
+	application you'll need to rely on something else. -->
+
+	<!-- testOnBorrow: You have to set this value, otherwise even though
+	you've asked connections to be tested while idle,
+	the idle evicter thread will never run -->
+
+	<!-- timeBetweenEvictionRunsMillis: Don't allow connections
+	to hang out idle too long, never longer than what wait_timeout
+	is set to on the server... A few minutes or even fraction of a
+	minute is sometimes okay here, it depends on your application
+	and how much spikey load it will see -->
+	
+	<!-- testWhileIdle: Otherwise, or in addition to testOnBorrow, you can test
+	while connections are sitting idle -->
+
+	<!-- maxWait: Maximum time to wait for a dB connection to become available
+	in ms, in this example 10 seconds. An Exception is thrown if
+	this timeout is exceeded. Set to -1 to wait indefinitely. -->
+
+	<!-- removeAbandoned: Turn on removing of abandoned connections -->
+	
+	<!-- removeAbandonedTimeout: Turn on the time-out for removing of
+	abandoned connections in seconds-->
+	
+	<!-- logAbandoned: Log the places where the application was abandoned -->
+	
+	<!-- username: MySQL dB username and password for dB connections -->
+	
+	<!-- driverClassName: Class name for mm.mysql JDBC driver -->
+	
+	<!-- url: The JDBC connection url for connecting to your MySQL dB.
+	The autoReconnect=true argument to the url makes sure that the
+	mm.mysql JDBC Driver will automatically reconnect if mysqld closed the
+	connection. mysqld by default closes idle connections after 8 hours. -->
+	
+	<Resource
+		name="jdbc/XCURE_CHAT_DB" auth="Container" type="javax.sql.DataSource"
+		maxActive="15" maxIdle="10" validationQuery="SELECT 1"
+		testOnBorrow="true" timeBetweenEvictionRunsMillis="10000"
+		minEvictableIdleTimeMillis="60000" testWhileIdle="false"
+		maxWait="10000" removeAbandoned="true" removeAbandonedTimeout="30"
+		logAbandoned="true" username="xcure-server" password="sjf#n@df0"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/XCURE_CHAT_DB?useUnicode=true&amp;characterEncoding=UTF-8"
+	/>
+
+	<Resource
+		name="jdbc/XCURE_HOSTIP_DB" auth="Container" type="javax.sql.DataSource"
+		maxActive="7" maxIdle="5" validationQuery="SELECT 1"
+		testOnBorrow="true" timeBetweenEvictionRunsMillis="10000"
+		minEvictableIdleTimeMillis="60000" testWhileIdle="false"
+		maxWait="10000" removeAbandoned="true" removeAbandonedTimeout="30"
+		logAbandoned="true" username="xcure-server" password="sjf#n@df0"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/XCURE_HOSTIP_DB?useUnicode=true&amp;characterEncoding=UTF-8"
+	/>
+	
+</Context>

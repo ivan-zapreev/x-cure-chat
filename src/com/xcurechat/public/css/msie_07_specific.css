@@ -1,0 +1,96 @@
+/*
+ * X-Cure-Chat
+ * Copyright (C) 2013  Dr. Ivan S. Zapreev
+ * www: https://nl.linkedin.com/in/zapreevis
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.#
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.xcure-Chat-User-Name-Avatar {
+	/*MS IE 8, compatibility mode, somehow the text is shifted down when the new chat message is added*/
+	top: -83px;
+}
+
+/*MS IE8: somehow does not accound for the width of the forum messages decorations*/
+.xcure-Chat-News-Panel .xcure-Chat-Scrollable-Panel {
+	overflow-x: hidden !important;
+}
+.xcure-Chat-News-Panel .xcure-Chat-Scrollable-Panel .xcure-Chat-ForumMessage-Widget-ODD,
+.xcure-Chat-News-Panel .xcure-Chat-Scrollable-Panel .xcure-Chat-ForumMessage-Widget-EVEN {
+	padding-right: 15px;
+}
+
+.xcure-Info-PopUpPanel {
+    /*MS IE 8, compatibility mode, the pop-up panels get
+      too wise probably because of the internal vertical
+      or horizontal panels have width 100% which IE interprets
+      relative to the client area of the browser window*/
+    width: 250px!important;
+}
+
+.xcure-Chat-ForumMessage-Title-Delimiter-Panel {
+	/* Somehow an empty div in MSIE has an non-zero size but 
+	   this style is applied to a delimiter div that is empty*/
+	height: 1px;
+}
+
+.xcure-Chat-Scrollable-Panel {
+    overflow: auto;
+    /*IF relative position is not declared explicitly then the elements 
+      inside the scroll area become somehow visible when are outside 
+      of it, as if overflow puts the elements above all other*/
+    position: relative;
+}
+
+/*Fore the vertical scroll bar to be always present
+  because otherwise the when it appears IE does not
+  resize the panel and we get an overflow which
+  causes the horizontal scrollbar to appear  */
+.xcure-Chat-Chat-Messages-Vertical-Align-Panel {
+    height: 100%;
+    width: 100%;
+    padding-right: 18px; /*An approximate width of the scroll bar*/
+    margin-top: 1px;
+}
+
+.xcure-Chat-Messages-ScrollPanel {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: scroll;
+}
+
+/*MSIE puts the background images of the decoration panel above the text*/
+.xcure-Chat-ForumMessage-Content {
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+.xcure-Chat-Message-Content {
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0px;
+}
+
+.xcure-Chat-Message-Content-Focus:hover {
+	border: none;
+	background-color: #becde1;
+	padding: 0px;
+}
+
+.xcure-Info-PopUpPanel-Content {
+	margin-top: 0px;
+	margin-left: 0px;
+}
+

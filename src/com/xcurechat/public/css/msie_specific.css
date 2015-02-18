@@ -1,0 +1,86 @@
+/*
+ * X-Cure-Chat
+ * Copyright (C) 2013  Dr. Ivan S. Zapreev
+ * www: https://nl.linkedin.com/in/zapreevis
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.#
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.xcure-Chat-Rooms-vs-Users-Panel {
+	width: 99%;
+    /*If the height is set to 99% as in rooms_manager.css
+      then MSIE makes the panel too wide and too high*/
+	height: 0% !important;
+	border-bottom: 2px solid #666666;
+}
+
+/*Make the text box the the passwort text box have the same width in MS IE*/
+.gwt-TextBox {
+    width: 150px;
+}
+
+.gwt-PasswordTextBox {
+    width: 150px;
+}
+
+.xcure-UserDialog-SuggestionTextBox {
+    width: 150px;
+}
+
+.xcure-UserDialog-SuggestionTextBox:focus {
+    width: 150px;
+}
+
+.xcure-Search-Query-TexBox {
+    width: 250px;
+}
+
+.xcure-Forum-PageNavigator-TextBox {
+    width: 40px;
+}
+
+.xcure-Forum-Message-Title-TextBox {
+	width: 350px;
+}
+
+.xcure-Forum-Message-Body-TextArea {
+	width: 430px;
+}
+
+.xcure-Offline-Message-Body-TextArea {
+	width: 400px;
+}
+
+.xcure-Chat-Message-Body-TextArea {
+	width: 500px;
+}
+
+/*IE settles with the first cursor it can use*/
+.xcure-Chat-Zoom-In-Cursor {
+	cursor: url(cursors/zoomin.cur), url(../cursors/zoomin.cur), hand, pointer;
+}
+
+.xcure-Chat-Zoom-Out-Cursor {
+	cursor: url(cursors/zoomout.cur), url(../cursors/zoomout.cur), hand, pointer;
+}
+
+.xcure-Chat-Edit-Cursor {
+	cursor: hand, pointer;
+}
+
+
+/*CSS for enlarged image on hover*/
+.xcure-Chat-Message-Image-Thumbnail:hover>span{
+    top: -45px; /*Make the enlarged image to be shown such that the small thumbnail is in the*/
+}

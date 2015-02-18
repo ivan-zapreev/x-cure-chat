@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<items baseHref="media/audio/" defaultVol="60">
+
+<sound id="chat_message" href="chat_message.mp3" />
+<sound id="offline_message" href="offline_message.mp3" />
+
+</items>

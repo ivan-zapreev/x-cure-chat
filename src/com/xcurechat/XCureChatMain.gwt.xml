@@ -1,0 +1,90 @@
+<module rename-to='XCureChatMain'>
+
+	<!-- Inherit the core Web Toolkit stuff.                  -->
+	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.google.gwt.i18n.I18N"/>
+	<inherits name="com.google.gwt.http.HTTP"/>
+	
+	<!-- Inherit the canvas                                   -->
+    <inherits name='com.google.gwt.widgetideas.GWTCanvas'/>
+    
+    <!-- Inherit the GWT log, can end with: OFF, TRACE, DEBUG, INFO, WARN, ERROR, FATAL -->
+    <inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />
+	
+	<!-- Opera needs a different implementation due to issue #3956 --> 
+	<replace-with class="com.google.gwt.user.client.impl.HistoryImplTimer">
+		<when-type-is class="com.google.gwt.user.client.impl.HistoryImpl"/>
+		<any>
+			<when-property-is name="user.agent" value="opera"/>
+		</any>
+	</replace-with>
+	
+	<!-- Specify the app entry point class.                   -->
+	<entry-point class='com.xcurechat.client.XCureChatMain'/>
+	
+	<!-- Define additional locales.                           -->
+	<extend-property name="locale" values="ru" />
+
+	<!-- Map the Servlet/GWT requests dispatcher Java servlet             -->
+	<servlet path='/dispatcher' class='com.xcurechat.server.DispatcherServlet'/>
+
+	<!-- Map the JSP/GWT requests dispatcher Java servlet             -->
+	<servlet path='/chat' class='com.xcurechat.server.ChatForwardServlet'/>
+
+	<!-- Map the JSP/GWT requests dispatcher Java servlet             -->
+	<servlet path='/forum' class='com.xcurechat.server.ForumForwardServlet'/>
+
+	<!-- Map the JSP/GWT requests dispatcher Java servlet             -->
+	<servlet path='/info' class='com.xcurechat.server.InfoForwardServlet'/>
+
+	<!-- Map the JSP/GWT requests dispatcher Java servlet             -->
+	<servlet path='/main' class='com.xcurechat.server.MainForwardServlet'/>
+
+	<!-- Map the user-management RPC servlet                  -->
+	<servlet path='/users' class='com.xcurechat.server.UserManagerImpl'/>
+
+	<!-- Map the room-management RPC servlet                  -->
+	<servlet path='/rooms' class='com.xcurechat.server.RoomManagerImpl'/>
+
+	<!-- Map the CAPTCHA image provider Java servlet          -->
+	<servlet path='/captcha' class='com.xcurechat.server.CaptchaImageServlet'/>
+
+	<!-- Map the chat-message files manager Java servlet      -->
+	<servlet path='/chatfiles' class='com.xcurechat.server.ChatFilesManager'/>
+
+	<!-- Map the profile files manager Java servlet           -->
+	<servlet path='/profilefiles' class='com.xcurechat.server.ProfileFilesManager'/>
+
+	<!-- Map the profile avatar images manager Java servlet   -->
+	<servlet path='/avatars' class='com.xcurechat.server.ProfileAvatarManager'/>
+
+	<!-- Map the forum files manager Java servlet             -->
+	<servlet path='/forumfiles' class='com.xcurechat.server.ForumFilesManager'/>
+
+	<!-- Map the user's private messages RPC servlet          -->
+	<servlet path='/messages' class='com.xcurechat.server.MessageManagerImpl'/>
+
+	<!-- Map the user's forum manager RPC servlet             -->
+	<servlet path='/forummanager' class='com.xcurechat.server.ForumManagerImpl'/>
+	
+	<!-- Internationalization support                         -->
+	<extend-property name="locale" values="en"/>
+	<extend-property name="locale" values="ru"/>
+	
+	<!-- For the bug of the GWT2.0 compiler we need to add the following    -->
+	<!-- to suppress the warnings and reduce the JavaScript size, see also: -->
+	<!-- http://code.google.com/p/google-web-toolkit/issues/detail?id=4438  -->
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.ChangeListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.ClickListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.FocusListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.FormHandlerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.KeyboardListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.LoadListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.MouseListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.MouseWheelListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.PopupListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.ScrollListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.TabListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.TableListenerCollection"/>
+	<extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.ui.TreeListenerCollection"/>
+</module>

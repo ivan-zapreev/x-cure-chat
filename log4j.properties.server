@@ -1,0 +1,24 @@
+#The root logger does debug logging
+log4j.rootLogger = INFO, LogFile
+
+#We do logging into a file
+log4j.appender.LogFile = org.apache.log4j.RollingFileAppender
+
+#Define the log file name
+log4j.appender.LogFile.File = /usr/share/tomcat/logs/xcure-chat.log
+
+#Set the max log file size
+log4j.appender.LogFile.MaxFileSize = 1MB
+
+# Keep one backup file
+log4j.appender.LogFile.MaxBackupIndex = 1
+
+#We use pattern layout
+log4j.appender.LogFile.layout = org.apache.log4j.PatternLayout
+
+# Print the date in ISO 8601 format
+log4j.appender.LogFile.layout.ConversionPattern = %-5p %d - %m%n
+#log4j.appender.LogFile.layout.ConversionPattern = %-5p %d [%c{1}:%L] - %m%n%-5p %x%n
+
+#Define log levels and may be some extra loggers to the packages, sub-packages and classes.
+#log4j.logger.com.xcurechat.server = TRACE

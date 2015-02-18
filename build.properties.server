@@ -1,0 +1,2 @@
+tomcat.dir = /usr/share/tomcat
+deployment.context = ROOT

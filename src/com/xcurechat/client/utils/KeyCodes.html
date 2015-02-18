@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Keyboard Events and Codes</title>
+<style type="text/css">
+body {font-family:Arial, sans-serif}
+h1 {text-align:right}
+td {text-align:center}
+</style>
+<script language="JavaScript" type="text/javascript">
+// array of table cell ids
+var tCells = ["downKey", "pressKey", "upKey", "downChar", "pressChar",
+"upChar", "keyTarget", "character"];
+
+// clear table cells for each key down event
+function clearCells() {
+for (var i = 0; i < tCells.length; i++) {
+document.getElementById(tCells[i]).innerHTML = "&mdash;";
+}
+}
+
+// display target node's node name
+function showTarget(evt) {
+var node = (evt.target) ? evt.target : ((evt.srcElement) ?
+evt.srcElement : null);
+if (node) {
+document.getElementById("keyTarget").innerHTML = node.nodeName;
+}
+}
+
+// decipher key down codes
+function showDown(evt) {
+clearCells();
+evt = (evt) ? evt : ((event) ? event : null);
+if (evt) {
+document.getElementById("downKey").innerHTML = evt.keyCode;
+if (evt.charCode) {
+document.getElementById("downChar").innerHTML = evt.charCode;
+}
+showTarget(evt);
+}
+}
+
+// decipher key press codes
+function showPress(evt) {
+evt = (evt) ? evt : ((event) ? event : null);
+if (evt) {
+document.getElementById("pressKey").innerHTML = evt.keyCode;
+if (evt.charCode) {
+document.getElementById("pressChar").innerHTML = evt.charCode;
+}
+showTarget(evt);
+var charCode = (evt.charCode) ? evt.charCode : evt.keyCode;
+// use String method to convert back to character
+document.getElementById("character").innerHTML =
+String.fromCharCode(charCode);
+}
+}
+
+// decipher key up codes
+function showUp(evt) {
+evt = (evt) ? evt : ((event) ? event : null);
+if (evt) {
+document.getElementById("upKey").innerHTML = evt.keyCode;
+if (evt.charCode) {
+document.getElementById("upChar").innerHTML = evt.charCode;
+}
+showTarget(evt);
+}
+}
+
+// set page-wide event listeners
+document.onkeydown = showDown;
+document.onkeypress = showPress;
+document.onkeyup = showUp;
+</script>
+</head>
+<body>
+<h1>Key and Character Codes vs. Event Types</h1>
+<hr>
+<p>Enter some text with uppercase and lowercase letters:<br>
+<form>
+<input type="text" id="entry" size="60"
+onkeydown="showDown(event)"
+onkeypress="showPress(event)"
+onkeyup="showUp(event)">
+</textarea></p>
+</form>
+<table border="2" cellpadding="5" cellspacing="5">
+<caption>Keyboard Event Properties</caption>
+<tr><th>Data</th><th>keydown</th><th>keypress</th><th>keyup</th></tr>
+<tr><td>keyCode</td>
+<td id="downKey">&mdash;</td>
+<td id="pressKey">&mdash;</td>
+<td id="upKey">&mdash;</td>
+</tr>
+<tr><td>charCode</td>
+<td id="downChar">&mdash;</td>
+<td id="pressChar">&mdash;</td>
+<td id="upChar">&mdash;</td>
+</tr>
+<tr><td>Target</td>
+<td id="keyTarget" colspan="3">&mdash;</td>
+</tr>
+<tr><td>Character</td>
+<td id="character" colspan="3">&mdash;</td>
+</tr>
+</table>
+</body>
+</html>

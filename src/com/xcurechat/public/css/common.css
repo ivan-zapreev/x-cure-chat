@@ -1,0 +1,2771 @@
+/*
+ * X-Cure-Chat
+ * Copyright (C) 2013  Dr. Ivan S. Zapreev
+ * www: https://nl.linkedin.com/in/zapreevis
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.#
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+/*****************************************************************************************************************************/
+/**COMMON HTML AND GWT STYLES*************************************************************************************************/
+/*****************************************************************************************************************************/
+
+html, body { /*Remove the unneeded margins paddings and etc*/
+	padding: 0px;
+	margin: 0px;
+	margin-right: 2px;
+	margin-left: 1px;
+	border: 0px;
+}
+
+body {
+	/*color: #FFFFFF;*/
+	font-family: "Times CY", "Times", "Century Schoolbook L", "Times New Roman", "Georgia", "Palatino Linotype", serif;
+	background: #BECDE1 url(../images/backgrounds/common_site_background.png) repeat-x scroll center top
+}
+
+input, body, h1, .gwt-Button, .xcure-UserStatsDialog-ClearButton {
+	font-size: 12px;
+	size: 12px;
+}
+
+.gwt-PopupPanel {
+	z-index: 2;
+}
+
+.gwt-TextBox, .gwt-TextArea {
+	cursor: default;
+	font-size: 12px;
+}
+
+h1 {
+	color: #000000;
+	font-weight: bold;
+	font-size: 12px;
+	background-color: transparent;
+}
+
+a {
+	color: darkblue;
+	text-decoration: underline;
+}
+
+a:hover{
+	color: blue;
+}
+
+table {
+    border: gray;
+    font-size: 12px;
+}
+
+.gwt-Frame {
+	margin: 0px 0px 0px 0px;
+	border: 0px none;
+}
+
+.gwt-ListBox {
+    font-size: 12px;
+}
+
+.gwt-Button {
+    background: lightgray;
+    border:1px solid #aaa;
+    border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+    padding: 2px;
+    margin: 3px;
+    width: 50%;
+}
+
+.gwt-Button:active {
+  border:1px solid #aaa;
+  border-bottom:1px solid #ccc;
+  border-right:1px solid #ccc;
+}
+
+.gwt-Button[disabled] {
+  background: #ccc;
+  border:1px solid #999;
+  border-top:1px solid #ccc;
+  border-left:1px solid #ccc;
+  color: #888;
+}
+
+.gwt-PasswordTextBox {
+  cursor: default;
+}
+
+.gwt-Canvas {
+}
+
+.gwt-CheckBox {
+  color: red;
+  border: gray;
+}
+
+.gwt-MenuBar {
+  cursor: default;
+  vertical-align: top;
+}
+
+.gwt-MenuBar > INPUT {
+  visibility: hidden;
+  display: none;
+}
+
+.gwt-MenuBar .gwt-MenuItem {
+	font-size: 13px;
+	margin-top: -2px;
+	padding-right: 2px;
+	/*border-right: 1px solid #000000;*/
+	color: #000000;
+	cursor: pointer;
+	cursor: hand;
+	white-space: nowrap;
+	/*background-color: #396eab;*/
+	background-color: #99AAEE;
+	border: 2px outset #5489c6;
+	padding-bottom:2px;
+	padding-left:2px;
+}
+
+.gwt-MenuBar .gwt-MenuItem:hover /*, .gwt-MenuBar .gwt-MenuItem-selected*/ {
+	border: 2px inset #5489c6;
+	padding-bottom:0px;
+	padding-left:0px;
+	padding-top:2px;
+	padding-left:2px;
+}
+
+.gwt-Tree {
+  margin: 2px;
+  color: green;
+}
+
+.gwt-Tree .gwt-TreeItem {
+    color: black;
+}
+
+.gwt-Tree .gwt-TreeItem .gwt-Label {
+	white-space: nowrap !important;
+}
+
+.gwt-Tree .gwt-TreeItem-selected {
+    color: black;
+    background: #93c2f1;
+}
+
+/*****************************************************************************************************************************/
+/*ROOMS MANAGER STYLES********************************************************************************************************/
+/*****************************************************************************************************************************/
+
+/*Disable the automatic scrolling inside the split panel*/
+.gwt-HorizontalSplitPanel > div, .gwt-HorizontalSplitPanel > div > div {
+	overflow-y: hidden !important;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel {
+	overflow-y: hidden;
+}
+.gwt-TabPanelBottom {
+	margin: 0px;
+	padding: 1px;
+	border: 2px solid #010c22;
+    /*position: relative; Is needed not to be covered by the background image*/
+    height: 100%;
+    overflow: hidden;
+}
+
+.gwt-DecoratedTabBar {
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem {
+	font-weight: bold;
+	padding: 0px;
+	margin-right: 2px;
+	color: #2d2d2d;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected {
+	color: black;
+	cursor: pointer;
+	position: relative;
+	bottom: 0px;
+}
+
+.gwt-DecoratedTabBar .tabMiddleCenter {
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenterInner {
+        padding-bottom: 3px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeftInner {
+	background: url(../images/backgrounds/common/roundedcornr_tl.png) no-repeat bottom right;
+	width: 7px;
+	height: 7px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+	background: url(../images/backgrounds/common/roundedcornr_t.png) repeat-x bottom left;
+	width: 1px;
+	height: 7px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRightInner {
+	background: url(../images/backgrounds/common/roundedcornr_tr.png) no-repeat bottom left;
+	width: 7px;
+	height: 7px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft {
+	background: url(../images/backgrounds/common/roundedcornr_l.png) repeat-y top right;
+	width: 7px;
+	height: 1px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+	background: url(../images/backgrounds/common/roundedcornr_r.png) repeat-y top left;
+	width: 7px;
+	height: 1px;
+}
+
+.gwt-DecoratedTabBar .tabTopLeftInner {
+	background: url(../images/backgrounds/common/roundedcornr_dark_tl.png) no-repeat bottom right;
+	width: 7px;
+	height: 7px;
+}
+
+.gwt-DecoratedTabBar .tabTopCenter {
+	background: url(../images/backgrounds/common/roundedcornr_dark_t.png) repeat-x bottom left;
+	width: 1px;
+	height: 7px;
+}
+
+.gwt-DecoratedTabBar .tabTopRightInner {
+	background: url(../images/backgrounds/common/roundedcornr_dark_tr.png) no-repeat bottom left;
+	width: 7px;
+	height: 7px;
+}
+
+.gwt-DecoratedTabBar .tabMiddleLeft {
+	background: url(../images/backgrounds/common/roundedcornr_dark_l.png) repeat-y top right;
+	width: 7px;
+	height: 1px;
+}
+
+.gwt-DecoratedTabBar .tabMiddleRight {
+	background: url(../images/backgrounds/common/roundedcornr_dark_r.png) repeat-y top left;
+	width: 7px;
+	height: 1px;
+}
+
+.gwt-HorizontalSplitPanel {
+    /*Prevents the splitter go outside the panel in Opera 9.64*/
+    overflow: hidden ! important;
+}
+
+.gwt-HorizontalSplitPanel .hsplitter {
+    border-top: 0px solid #010c22;
+    border-bottom: 0px solid #010c22;
+    border-right: 0px solid #010c22;
+    border-left: 2px solid #010c22;
+    cursor: move;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel {
+	width: 99%;
+	height: 99%;
+	border-bottom: 2px solid #010c22;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .gwt-StackPanelContent {
+	border: 2px solid #010c22;
+	border-bottom: 0px;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .gwt-StackPanelItem {
+	color: black;
+	font-weight: bold;
+	font-size: 12px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .stackItemMiddleCenter {
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .stackItemTopLeft {
+	background: url(../images/backgrounds/common/roundedcornr_tl.png) no-repeat bottom right;
+	width: 7px;
+	height: 7px;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .stackItemTopRight {
+	background: url(../images/backgrounds/common/roundedcornr_tr.png) no-repeat bottom left;
+	width: 7px;
+	height: 7px;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .stackItemTopCenter {
+	background: url(../images/backgrounds/common/roundedcornr_t.png) repeat-x bottom left;
+	height: 7px;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .stackItemMiddleLeft {
+	background: url(../images/backgrounds/common/roundedcornr_l.png) repeat-y top right;
+	width: 7px;
+}
+
+.xcure-Chat-Rooms-vs-Users-Panel .stackItemMiddleRight {
+	background: url(../images/backgrounds/common/roundedcornr_r.png) repeat-y top left;
+	width: 7px;
+}
+
+.xcure-RoomsManagerUI-TitleActionImage {
+	width: 16px;
+	height: 16px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/*****************************************************************************************************************************/
+/*GENERAL AND MISCELENEAOUS STYLES********************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-Chat-Loading-Component-Glass-Panel-Style {
+    display: block;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    border-collapse: collapse;
+    background: url(../images/backgrounds/common_transparent/background.png) repeat top left;
+    overflow: hidden;
+}
+
+.xcure-Chat-Locale-Image {
+	width: 27px;
+	height: 20px;
+	border: 0px none;
+	padding-bottom: 2px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-User-Status-Bar-Image, .xcure-Chat-Sound-On-Image, .xcure-Chat-Sound-Off-Image {
+    width: 20px;
+    height: 20px;
+}
+
+.xcure-Chat-Sound-On-Image, .xcure-Chat-Sound-Off-Image {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Char-Sound-Button-Panel-Visible {
+	border-right: 1px solid #000000;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding-right: 3px;
+}
+
+.xcure-Char-Sound-Button-Panel-In-Visible {
+	border-right: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-right: 0px;
+}
+
+.xcure-Chat-Sound-On-Image {
+	border: white 2px inset;
+}
+
+.xcure-Chat-Sound-Off-Image {
+	border: white 2px outset;
+}
+
+.xcure-Chat-Radio-Menu-Item {
+	background-color: #396EEE!important;
+}
+
+.xcure-Chat-New-Offline-Message-Menu-Item {
+	color: #ff0000 !important;
+	text-decoration:blink;
+}
+
+.xcure-User-Status-Widget-Extra-Style {
+  font-weight: bold;
+  color: #000000;
+  border-right: 1px solid #000000;
+  margin-right: 2px;
+  padding-right: 3px;
+  text-align: left;
+}
+
+.xcure-Locale-Panel-Style {
+  border-left: 1px solid #000000;
+  padding-right: 3px;
+}
+
+.xcure-Users-Tree-Image-Place-Holder {
+	width: 18px !important;
+	height: 18px !important;
+    margin: 0px;
+    padding: 0px;
+}
+
+.xcure-Users-Tree-Image,
+.xcure-Rooms-Tree-Image,
+.xcure-Users-Site-Age-Tree-Image,
+.xcure-Users-Forum-Activity-Tree-Image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-Users-Tree-Image,
+.xcure-Rooms-Tree-Image {
+	width: 18px;
+	height: 18px;
+}
+
+.xcure-Users-Forum-Activity-Tree-Image {
+	width: 16px;
+	height: 16px;
+}
+
+.xcure-Users-Site-Age-Tree-Image {
+	width: 19px;
+	height: 19px;
+}
+
+.xcure-ChatRoomUI-TreeItem-Room {
+	cursor: pointer;
+	cursor: hand;
+    color: black;
+	font-weight: bold;
+    margin-left: -20px ! important;
+}
+
+.xcure-ChatRoomUI-TreeItem-User {
+	cursor: pointer;
+	cursor: hand;
+    color: black;
+	font-weight: bold;
+    margin-left: -35px ! important;
+}
+
+.xcure-ChatRoomUI-TreeItem-Hidden-User,
+.xcure-ChatRoomUI-TreeItem-Blocked-User {
+	font-weight: bold;
+    color: #800000;
+    margin-left: -35px ! important;
+}
+
+.xcure-ChatRoomUI-TreeItem-Blocked-User {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-ChatRoomUI-TreeItem-Hidden-User {
+	cursor: pointer;
+}
+
+.xcure-Chat-Avatar-Info-Value {
+    color: darkred;
+    font-weight: bold;
+	white-space: nowrap;
+}
+
+.xcure-Chat-Avatar-Info-Name {
+    color: black;
+	white-space: nowrap;
+}
+
+.xcure-Avatar-Image,
+.xcure-Avatar-Image-Widget,
+.xcure-Avatar-Image-Choice {
+	width: 60px;
+	height: 60px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-Avatar-Image-Widget {
+	border: 3px outset;
+}
+
+.xcure-Avatar-Image-Choice {
+	border: 2px solid darkblue;
+}
+
+.xcure-Chat-Avatar-Spoiler-Image {
+	margin: 0px;
+	border-width: 0px !important;
+	text-decoration: none;
+	position: relative;
+	display: block;
+	width: 60px;
+	height: 60px;
+	left: 0px !important;
+	top: -60px;
+	margin-bottom: -60px;
+}
+
+.xcure-Chat-Avatar-Spoiler-Action-Panel-Style,
+.xcure-Chat-Avatar-NoSpoiler-Action-Panel-Style {
+	margin: 0px;
+	border-width: 0px !important;
+	text-decoration: none;
+	position: relative;
+	display: block;
+	width: 18px;
+	height: 18px;
+	top: -18px;
+	margin-bottom: -18px;
+}
+
+.xcure-Chat-Avatar-Spoiler-Action-Panel-Style {
+	z-index: 1;
+	left: 0px !important;
+}
+
+.xcure-Chat-Avatar-NoSpoiler-Action-Panel-Style {
+	z-index: 1;
+	left: 42px !important;
+}
+
+.xcure-Avatar-Widget-In-List {
+	float: left!important;
+	margin: 2px!important;
+}
+
+.xcure-AvatarImage-Default:hover {
+	cursor: pointer;
+	cursor: hand;
+	border: 2px solid blue;
+}
+
+.xcure-ActionImage-Panel {
+	border-top: blue groove 2px;
+}
+
+.xcure-Action-Link-Important {
+    color: #C80000;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.xcure-ActionImage-Link, .xcure-ActionImage-Link-Disabled {
+	width: 18px;
+	height: 18px;
+	margin: 1px;
+}
+
+.xcure-ActionImage-Link {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-ActionImage-Link-Disabled {
+	cursor: default;
+	cursor:not-allowed;
+}
+
+.xcure-Chat-Inline-Display {
+    display: inline!important;
+}
+
+.xcure-Chat-Clickable-Panel {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-TextObject-Translit-Place-Holder {
+    width: 8px ! important;
+    cursor: default;
+    padding: 1px;
+    margin-left: 1px;
+}
+
+.xcure-Chat-TextObject-Translit-On, .xcure-Chat-TextObject-Translit-Off {
+	width: 4px;
+	cursor: pointer;
+	cursor: hand;
+	margin-left: 1px;
+}
+
+.xcure-Chat-TextObject-Translit-On {
+	background-color: lightblue;
+	border-style: inset;
+}
+
+.xcure-Chat-TextObject-Translit-Off {
+	background-color: darkblue;
+	border-style: outset;
+}
+
+.xcure-Chat-Scrollable-Panel {
+    overflow: auto;
+}
+
+.xcure-User-Agreement-Dialog-Text-Area {
+	/*color: white;*/
+	/*background-color: black;*/
+}
+
+.xcure-Chat-IE-Error-Panel {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        font-size: 12px;
+        color: yellow;
+        background-color: black;
+        border: 2px solid gray;
+        padding: 20px;
+}
+
+.xcure-Chat-Server-Communication-Status-Panel {
+    width: 20px;
+    height: 20px;
+}
+
+.xcure-Chat-Site-Navigation-Title-Image, .xcure-Chat-Site-Navigation-Title-Image-Selected {
+	z-index: -1;
+	width: 60px;  /*70px*/
+	/*height: 30px;*/
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 1px;
+	/*padding-bottom: 2px;*/
+	margin: 1px;
+	margin-top: 3px;
+	border-width: 0px;
+	text-decoration: none;
+}
+
+/*
+.xcure-Chat-Site-Navigation-Title-Image:hover {
+	padding-bottom: 0px;
+	border-bottom: 2px outset blue;
+}
+*/
+
+.xcure-Chat-Site-Navigation-Title-Image-Selected {
+	cursor: default;
+}
+
+.xcure-Chat-Site-Navigation-Title-Image {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-Site-Section-Alert-Image {
+	margin: 0px;
+	border-width: 0px;
+	text-decoration: none;
+	position: relative;
+	display: block;
+	width: 24px;
+	height: 24px;
+	left: 45px;
+	top: -24px;
+	margin-bottom: -24px;
+}
+
+.xcure-Chat-Site-Section-Link {
+	float: left;
+}
+
+.xcure-Help-Menu-Item-Link {
+	color: yellow;
+	text-decoration: underline;
+	/*border-right: 1px solid #000000;*/
+	padding-right: 2px;
+	cursor: pointer;
+	cursor: help;
+}
+
+.xcure-Help-Menu-Item-Link:hover {
+	color: DarkRed;
+}
+
+.xcure-Chat-Remove-Image-Button, .xcure-Chat-Remove-Image-Button-Disabled {
+    display: block;
+    vertical-align: middle;
+    cursor: pointer;
+    cursor: hand;
+    width: 12px;
+    height: 12px;
+}
+
+.xcure-Chat-Remove-Image-Button-Disabled {
+    cursor: default;
+}
+
+.xcure-Chat-Messages-ScrollPanel {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.xcure-Chat-Messages-ScrollPanel>div {
+	height: 100%;
+}
+
+.xcure-Chat-No-Spacing {
+	border-width: 0px;
+	border-spacing: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	float: bottom;
+}
+
+.xcure-Chat-Quote-Message-Text-Style {
+	color: darkblue;
+	font-style: italic;
+	font-size: 13px;
+}
+
+.xcure-Chat-Basic-Message-Text-Style {
+	color: black;
+	font-size: 13px;
+}
+
+.xcure-Chat-Clickable-Style {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-Chat-Float-Left-Style {
+	float: left;
+}
+
+.xcure-Chat-Main-Visitors-Statistics-Field {
+	font-size: 12px;
+	color: #bbbbff;
+}
+
+.xcure-Chat-List-Box {
+	background-color: none;
+	color: #000000;
+	font-size: 12px;
+}
+
+.xcure-Chat-Main-Visitors-Statistics-Value {
+	font-size: 12px;
+	color: white;
+}
+
+.xcure-On-Load-Progress-Panel {
+	font-size: 12px;
+	color: black;
+	font-weight: bold;
+	white-space: nowrap;
+	position: absolute;
+	width: 100%;
+	top: 50px;
+	/*left: 40%;*/
+}
+
+.xcure-On-Load-Progress-Panel img {
+	vertical-align: middle;
+}
+
+.xcure-Chat-User-Status-Widget-Label {
+	color: white;
+}
+
+.xcure-Chat-Float-None {
+	float: none!important;
+}
+
+.xcure-Chat-File-Upload-ImageThumnbail, .xcure-Chat-File-Upload-ImageThumnbail-Dis {
+	border: 2px solid DarkRed;
+	width: 100px;
+	height: 75px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: default;
+}
+
+.xcure-Chat-File-Upload-ImageThumnbail:hover {
+	border: 2px solid blue;
+}
+
+.xcure-Chat-Media-File-Widget-Border-Style {
+	margin: auto;
+}
+
+.xcure-Chat-Flash-Player-Widget-Style,
+.xcure-Chat-Media-File-Widget-Border-Style {
+	border: 2px solid blue;
+	display: block;
+}
+
+.xcure-Chat-Flash-Player-Widget-Style {
+	margin: 2px;
+	float:left;
+	text-align:center;
+}
+
+.xcure-Chat-Flash-Player-Panel-Style {
+    background: url('../images/progress.gif') #99CCFF no-repeat center;
+}
+
+.xcure-Chat-Flash-Player-Widget-Download-Link-Centering-Chrome-Style {
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+}
+
+.xcure-Chat-Flash-Player-Blocked-Panel-Style {
+    background: url('../media/flash_block.png') #99CCFF no-repeat center;
+	cursor: pointer;
+	cursor: hand;
+	/*Goldener Schnitt*/
+	width:  402px;
+	height: 250px;
+}
+
+.xcure-Chat-Image-Media-File-View-Style {
+	display: block;
+	margin: auto;
+}
+
+/*We settle with the first cursor it can use*/
+.xcure-Chat-Zoom-In-Cursor {
+	cursor: url("../cursors/zoomin.cur"), url("cursors/zoomin.cur"), -moz-zoom-in, hand, pointer;
+	cursor: pointer;
+	cursor: hand;
+	cursor: -moz-zoom-in;
+	cursor: url("cursors/zoomin.cur");
+	cursor: url("../cursors/zoomin.cur");
+}
+
+.xcure-Chat-Zoom-Out-Cursor {
+	cursor: url("../cursors/zoomout.cur"), url("cursors/zoomout.cur"), -moz-zoom-out, hand, pointer;
+	cursor: pointer;
+	cursor: hand;
+	cursor: -moz-zoom-out;
+	cursor: url("cursors/zoomout.cur");
+	cursor: url("../cursors/zoomout.cur");
+}
+
+.xcure-Chat-Edit-Cursor {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.centered {
+	text-align: center;
+}
+
+.centered-table {
+	margin: 0 auto; 
+	text-align: left;
+	float: none!important;
+}
+
+.xcure-Choose-Avatar-Panel {
+	width: 700px !important;
+	height: 255px !important;
+	border: 2px solid darkblue;
+}
+
+.xcure-Chat-User-Treasure-Widget {
+	font-size: 12px;
+	color: yellow;
+	font-weight: bold;
+	border-right: 1px solid #000000;
+	margin-right: 2px;
+	padding-right: 3px;
+	text-align: left;
+	cursor: pointer;
+	cursor: hand;
+	cursor: help;
+}
+
+.xcure-Chat-Price-Tag-Widget, .xcure-Chat-Price-Tag-Widget-Disabled {
+}
+
+.xcure-Chat-Price-Tag-Widget {
+	color: #0000A0;
+}
+
+.xcure-Chat-Price-Tag-Widget-Disabled {
+	/*color: black;*/
+}
+
+.xcure-Chat-Price-Tag-Widget-Clickable {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-Page-Idx-Enabled,
+.xcure-Chat-Page-Idx-Disabled,
+.xcure-Chat-Page-Idx-Current {
+	font-weight: bold;
+}
+
+.xcure-Chat-Page-Idx-Enabled {
+	color: darkblue;
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.xcure-Chat-Page-Idx-Disabled, .xcure-Chat-Page-Idx-Disabled:hover {
+	color: darkblue;
+	cursor: default;
+	text-decoration: none;
+}
+
+.xcure-Chat-Page-Idx-Current, .xcure-Chat-Page-Idx-Current:hover {
+	color: black;
+	cursor: default;
+	text-decoration: none;
+}
+
+.xcure-Chat-Top-Page-Indexes-List {
+	border-bottom: black 2px solid;
+	width: 100%;
+}
+
+.xcure-Chat-Bottom-Page-Indexes-List {
+	border-top: black 2px solid;
+	width: 100%;
+}
+
+.xcure-Chat-Nav-Left-Button-Panel,
+.xcure-Chat-Nav-Right-Button-Panel {
+    width: 22px;
+}
+
+.xcure-Chat-Nav-Top-Button-Panel,
+.xcure-Chat-Nav-Bottom-Button-Panel {
+    height: 22px;
+}
+
+.xcure-Chat-Nav-Button-Panel-On {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-Chat-Nav-Button-Panel-Off {
+    cursor: default;
+    border-color: transparent!important;
+}
+
+.xcure-Chat-Nav-Button-Panel-Image {
+    display: block;
+    margin: auto;
+    padding: 2px;
+}
+
+.xcure-Chat-Nav-Button-Panel-Label {
+    font-size: 12px;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.xcure-Chat-Avatar-Panel, .xcure-Chat-Avatar-Panel-Disabled {
+	color: black;
+}
+
+.xcure-Chat-Avatar-Panel {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-Avatar-Panel-Disabled {
+	cursor: default;
+}
+
+/*****************************************************************************************************************************/
+/*GENERAL SITE DECORATION/TITLE/BACKGROUND STYLES*****************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-Chat-Site-Title {
+    font-family: "Monotype Corsiva", "Apple Chancery", "URW Chancery L", "Comic Sans MS", cursive;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+	/*Need to have nowrap because otherwise the IE and some other browsers start wrapping words*/
+	white-space: nowrap;
+}
+
+.xcure-Chat-Main-Title-Panel-Style {
+    /*This style is needed to avoid overlappind of 
+      the site title menu with the background image.
+      With the setting as below the image stays in
+      the background all along*/
+    position: relative;
+}
+
+/* z-index: -1 (-2) Puts the image into the background, has to be
+   put in both !SEPARATE! style classes because of Opera 6.24,
+   otherwise the image goes to the background after the user
+   is logged in and becomes invisible. Also the zindex values
+   have to be different */
+.xcure-Chat-Site-Background-Image-Panel-Visible {
+    z-index: -2;
+    width: 40%;
+    right: 0px;
+    border: 0 none;
+    position: absolute;
+    bottom: 5%;
+}
+
+.xcure-Chat-Site-Background-Image-Panel-InVisible {
+    z-index: -1;
+    /*width: 80%;*/
+    /*margin-left: 5%;*/
+    /*border: 0 none;*/
+    position: absolute;
+    /*bottom: 5%;*/
+	display: none;
+}
+
+.xcure-Chat-Site-Background-Image {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.xcure-Chat-Site-Title-Time0 {
+    /*color: #330033;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time1 {
+    /*color: #330033;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time2 {
+    /*color: #330033;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time3 {
+    /*color: #330066;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time4 {
+    /*color: #330099;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time5 {
+    /*color: #3300CC;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time6 {
+    /*color: #3366CC;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time7 {
+    /*color: #339999;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time8 {
+    /*color: #33CC66;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time9 {
+    /*color: #33CC33;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time10 {
+    /*color: #33CC00;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time11 {
+    /*color: #33FF00;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time12 {
+    /*color: #66FF00;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time13 {
+    /*color: #CCFF00;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time14 {
+    /*color: #99FF00;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time15 {
+    /*color: #99FF33;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time16 {
+    /*color: #99FF66;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time17 {
+    /*color: #33FF99;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time18 {
+    /*color: #33CC99;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time19 {
+    /*color: #339999;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time20 {
+    /*color: #336699;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time21 {
+    /*color: #333399;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time22 {
+    /*color: #330099;*/
+	color: black;
+}
+
+.xcure-Chat-Site-Title-Time23 {
+    /*color: #330066;*/
+	color: black;
+}
+
+.xcure-Chat-Introduction-Panel {
+    width: 60%;
+}
+
+.xcure-Chat-Gray-Decorated-Panel {
+	/*float: left;*/
+}
+
+.xcure-Chat-Gray-Decorated-Panel .middleCenter {
+	background: url(../images/backgrounds/common_transparent/background.png) repeat top left;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .topLeft {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_tl.png) no-repeat bottom right;
+	width: 7px;
+	height: 8px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .topCenter {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_t.png) repeat-x bottom left;
+	height: 8px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .topRight {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_tr.png) no-repeat bottom left;
+	width: 8px;
+	height: 8px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .middleLeft {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_l.png) repeat-y top right;
+	width: 7px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .middleRight {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_r.png) repeat-y top left;
+	width: 8px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .bottomLeft {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_bl.png) no-repeat top right;
+	width: 7px;
+	height: 8px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .bottomCenter {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_b.png) repeat-x top left;
+	height: 8px;
+}
+
+.xcure-Chat-Gray-Decorated-Panel .bottomRight {
+	background: url(../images/backgrounds/common_transparent/roundedcornr_br.png) no-repeat top left;
+	width: 8px;
+	height: 8px;
+}
+
+/*****************************************************************************************************************************/
+/*THE TOP 10 SECTION WIDGET STYLES********************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-Chat-Top10-Title-Image-Button {
+    height: 16px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-Chat-Top10-Rating-Title-Panel {
+    color: darkred;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+    border-bottom: 2px solid #010c22;
+}
+
+.xcure-Chat-Top10-Stat-Panel {
+    width: 115px;
+}
+
+.xcure-Chat-Top10-Wide-Stat-Panel {
+    width: 125px;
+}
+
+.xcure-Top10-User-File-Upload-Date-Label {
+    color: darkred;
+    font-weight: bold;
+}
+
+/*****************************************************************************************************************************/
+/*INFO POPUP PANEL STYLES*****************************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-Info-PopUpPanel .middleCenter {
+    background-color: #95a6d0;
+    color: #87B3FF;
+    text-align: left;
+}
+
+.xcure-Info-PopUpPanel-Content {
+	margin-top: -12px; /*Account for the decoration images*/
+	margin-left: -8px; /*Account for the decoration images*/
+}
+
+.xcure-Chat-View-Full-Profile-Link-Panel {
+	width: 100%;
+	border-top: blue groove 2px;
+	margin-top: 2px;
+}
+
+.xcure-Info-PopUpPanel .topLeftInner {
+	background: url(../images/backgrounds/popup/roundedcornr_tl.png) no-repeat bottom right;
+	width: 23px;
+	height: 24px;
+}
+
+.xcure-Info-PopUpPanel .topCenter {
+	background: url(../images/backgrounds/popup/roundedcornr_t.png) repeat-x bottom left;
+	height: 24px;
+}
+
+.xcure-Info-PopUpPanel .topRightInner {
+	background: url(../images/backgrounds/popup/roundedcornr_tr.png) no-repeat bottom left;
+	width: 28px;
+	height: 24px;
+}
+
+.xcure-Info-PopUpPanel .middleLeft {
+	background: url(../images/backgrounds/popup/roundedcornr_l.png) repeat-y top right;
+	width: 23px;
+}
+
+.xcure-Info-PopUpPanel .middleRight {
+	background: url(../images/backgrounds/popup/roundedcornr_r.png) repeat-y top left;
+	width: 28px;
+}
+
+.xcure-Info-PopUpPanel .bottomLeftInner {
+	background: url(../images/backgrounds/popup/roundedcornr_bl.png) no-repeat top right;
+	width: 23px;
+	height: 28px;
+}
+
+.xcure-Info-PopUpPanel .bottomCenter {
+	background: url(../images/backgrounds/popup/roundedcornr_b.png) repeat-x top left;
+	height: 28px;
+}
+
+.xcure-Info-PopUpPanel .bottomRightInner {
+	background: url(../images/backgrounds/popup/roundedcornr_br.png) no-repeat top left;
+	width: 28px;
+	height: 28px;
+}
+
+.xcure-ChatRoom-PopUpPanel-Image {
+	width: 18px;
+	height: 18px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-ChatRoom-PopUpPanel-Title {
+    font-size: 12px;
+    font-weight: bold;
+    color: DarkRed;
+    text-align: center;
+}
+
+.xcure-ChatRoom-PopUpPanel-Button {
+  display: block;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+.xcure-ChatRoom-PopUpPanel-Button[disabled] {
+  background: #ccc;
+  color: #888;
+}
+
+/*****************************************************************************************************************************/
+/*FORUM COMPONENT STYLES******************************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-Chat-Forum-Message-Title-Avatar-Panel {
+	width: 100px !important;
+}
+
+.xcure-Chat-News-Panel {
+    width: 60%;
+}
+
+.xcure-Chat-Forum-Message-Title {
+	padding-bottom: 1px;
+}
+
+.xcure-Chat-Forum-Message-Clickable-Title:hover {
+	cursor: pointer;
+	cursor: hand;
+	padding-bottom: 0px;
+	border-bottom: 1px solid darkblue;
+}
+
+.xcure-Chat-ForumMessage-Content {
+	margin-top: -18px; /*Account for the decoration images*/
+	margin-left: -5px;  /*Account for the decoration images*/
+}
+
+.xcure-Chat-Forum-Stack-Panel-PriaryStyle {
+	width: 380px;
+}
+
+.xcure-Chat-Forum-Stack-Panel-Vert-Panel-PriaryStyle {
+	padding: -6px;
+}
+
+.xcure-Chat-Forum-Topic-Title {
+	font-size: 12px !important;
+}
+
+.xcure-Chat-Forum-Simple-Message-Subject {
+	font-size: 12px !important;
+}
+
+.xcure-Chat-Forum-Messages-Panel {
+	width: 100%;
+	height: 100%;
+}
+
+.xcure-Chat-ForumMessage-Title-Delimiter-Panel {
+	width: 100%;
+	padding-bottom: 2px;
+	border-bottom: blue groove 2px;
+}
+
+.xcure-Chat-Forum-Message-Attached-Img-Preview {
+	border: 1px solid darkblue;
+	width: 100px;
+	height: 75px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-Chat-Forum-Message-Attached-Img-Preview:hover {
+	border: 1px solid blue;
+}
+
+.xcure-Chat-ForumMessage-Subject-Panel-Delim {
+	height: 100%;
+	border-right: blue groove 2px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD, .xcure-Chat-ForumMessage-Widget-EVEN {
+	width: 100%;
+	padding-right: 5px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .gwt-DisclosurePanel .header, .xcure-Chat-ForumMessage-Widget-EVEN  .gwt-DisclosurePanel .header {
+	font-weight: bold;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .middle .middleCenter, .xcure-Chat-ForumMessage-Widget-EVEN .middle .middleCenter {
+	background: none;
+	background-color: #b8d8ff !important;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .top .topLeft {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_tl.png) no-repeat bottom right;
+	width: 20px!important;
+	height: 22px;
+}
+
+
+.xcure-Chat-ForumMessage-Widget-ODD .top .topCenter {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_t.png) repeat-x bottom left;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .top .topRight {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_tr.png) no-repeat bottom left;
+	width: 24px!important;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .middle .middleLeft {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_l.png) repeat-y top right;
+	width: 20px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .middle .middleRight {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_r.png) repeat-y top left;
+	width: 24px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .bottom .bottomLeft {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_bl.png) no-repeat top right;
+	width: 20px!important;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .bottom .bottomCenter {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_b.png) repeat-x top left;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-ODD .bottom .bottomRight {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_br.png) no-repeat top left;
+	width: 24px!important;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .top .topLeft {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_tl.png) no-repeat bottom right;
+	width: 20px!important;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .top .topCenter {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_t.png) repeat-x bottom left;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .top .topRight {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_tr.png) no-repeat bottom left;
+	width: 24px!important;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .middle .middleLeft {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_l.png) repeat-y top right;
+	width: 20px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .middle .middleRight {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_r.png) repeat-y top left;
+	width: 24px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .bottom .bottomLeft {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_bl.png) no-repeat top right;
+	width: 20px!important;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .bottom .bottomCenter {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_b.png) repeat-x top left;
+	height: 22px;
+}
+
+.xcure-Chat-ForumMessage-Widget-EVEN .bottom .bottomRight {
+	background: url(../images/backgrounds/forum_messages/odd/roundedcornr_br.png) no-repeat top left;
+	width: 24px!important;
+	height: 22px;
+}
+
+.xcure-Chat-Forum-Message-Stack-All-Topics, .xcure-Chat-Forum-Message-Stack-Custom-Search,
+.xcure-Chat-Forum-Message-Stack-Message-Replies, .xcure-Chat-Forum-Message-Stack-Message-Replies-Last-Stack-Element {
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 2px;
+	font-size: 12px;
+}
+
+.xcure-Chat-Forum-Message-Stack-Custom-Search,
+.xcure-Chat-Forum-Message-Stack-All-Topics {
+	font-weight: bold;
+}
+
+.xcure-Chat-Forum-Message-Stack-Custom-Search,
+.xcure-Chat-Forum-Message-Stack-Message-Replies,
+.xcure-Chat-Forum-Message-Stack-Message-Replies-Last-Stack-Element,
+.xcure-Chat-Forum-Message-Stack-All-Topics {
+	color: darkblue;
+	padding-bottom: 1px;
+}
+
+.xcure-Chat-Forum-Message-Stack-All-Topics:hover,
+.xcure-Chat-Forum-Message-Stack-Custom-Search:hover,
+.xcure-Chat-Forum-Message-Stack-Message-Replies:hover,
+.xcure-Chat-Forum-Message-Stack-Message-Replies-Last-Stack-Element:hover {
+    border-bottom: 1px solid;
+	color: darkblue;
+	padding-bottom: 0px;
+}
+
+.xcure-Chat-Max-Forum-Message-View-Dialog {
+	width: 770px;
+	height: 420px;
+}
+
+.xcure-Chat-Max-Width-Forum-Message-View-Dialog {
+	width: 100%;
+}
+
+.xcure-Chat-Max-Width-Forum-Message-Title {
+	width: 600px;
+	overflow: auto;
+}
+
+.xcure-Chat-Max-Width-Forum-Message-Body-Scroll {
+	width: 710px;
+}
+
+.xcure-Chat-Forum-Action-Panel-Button-Style {
+	width: 130px;
+}
+
+.xcure-Forum-PageNavigator-TextBox {
+}
+
+.xcure-Forum-Message-Title-TextBox {
+	width: 450px;
+}
+
+.xcure-Forum-Message-Body-TextArea {
+	width: 530px;
+}
+
+.xcure-Share-Forum-Message-Link, .xcure-Share-Forum-Message-Link-Image {
+	border-style: none;
+	color: #000000; 
+}
+
+.xcure-Share-Forum-Message-Link-Image {
+	width: 18px;
+	height: 18px;
+}
+
+.xcure-Chat-Forum-Title-Component {
+	width: 100%;
+	height: 25px;
+}
+
+.xcure-Chat-Forum-New-Message-Arrow-Image-Style {
+	width: 20px;
+	height: 25px;
+}
+
+.xcure-Chat-Search-Panel-Delimiter {
+	border-left: darkblue 1px solid;
+	margin-left: 5px;
+	margin-right: 5px;
+	height: 25px;
+}
+
+.xcure-Chat-Forum-Stack-Nav-Dec-Panel {
+	border-top: black 2px solid;
+	padding-top: 1px;
+	margin-top: 2px;
+}
+
+.xcure-Chat-Forum-Stack-Nav-Scroll-Panel {
+	height: 35px;
+	margin-bottom:-5px;
+	overflow-y: hidden!important;
+}
+
+/*****************************************************************************************************************************/
+/*INFO MESSAGE DIALOG STYLES**************************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-InfoMessageDialogUI {
+	/*Need to have nowrap because otherwise the IE and some other browsers start wrapping words*/
+	white-space: nowrap;
+	z-index: 2;
+}
+
+.xcure-InfoMessageDialogUI .dialogTopLeft {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_tl.png) no-repeat bottom right;
+	width: 23px;
+	height: 32px;
+}
+
+.xcure-InfoMessageDialogUI .dialogTopCenter {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_t.png) repeat-x bottom left;
+	width: 1px;
+	height: 32px;
+}
+
+.xcure-InfoMessageDialogUI .dialogTopRight {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_tr.png) no-repeat bottom left;
+	width: 28px;
+	height: 32px;
+}
+
+.xcure-InfoMessageDialogUI .dialogMiddleLeft {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_l.png) repeat-y top right;
+	width: 23px;
+	height: 1px;
+}
+
+.xcure-InfoMessageDialogUI .dialogMiddleRight {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_r.png) repeat-y top left;
+	width: 28px;
+	height: 1px;
+}
+
+.xcure-InfoMessageDialogUI .dialogBottomLeft {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_bl.png) no-repeat top right;
+	width: 23px;
+	height: 28px;
+}
+
+.xcure-InfoMessageDialogUI .dialogBottomCenter {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_b.png) repeat-x top left;
+	width: 1px;
+	height: 28px;
+}
+
+.xcure-InfoMessageDialogUI .dialogBottomRight {
+	background: url(../images/backgrounds/info_dialog/roundedcornr_br.png) no-repeat top left;
+	width: 28px;
+	height: 28px;
+}
+
+.xcure-InfoMessageDialogUI .Caption {
+	/*Has to be nowrap here as well because IE does not want it to be only in the .xcure-UserDialog class*/
+	white-space: nowrap;
+	background-color: #0000FF;
+	cursor: default;
+	border-bottom: 1px solid #010c22;
+
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.xcure-InfoMessageDialogUI .dialogContent {
+	background-color: #0000FF;
+	width: 100%;
+}
+
+.xcure-InfoMessageDialogUI .dialogContent .gwt-HTML {
+	border: 2px inset;
+	background-color: #99AAEE;
+	padding-left: 4px;
+	padding-right: 10px;
+}
+
+.xcure-InfoMessageDialogUI-Button {
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-InfoMessageDialogUI .gwt-Label {
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/*****************************************************************************************************************************/
+/*ERROR MESSAGE DIALOG STYLES*************************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-ErrorMessagesDialogUI {
+	/*Need to have nowrap because otherwise the IE and some other browsers start wrapping words*/
+	white-space: nowrap;
+	z-index: 2;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogTopLeft {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_tl.png) no-repeat bottom right;
+	width: 23px;
+	height: 32px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogTopCenter {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_t.png) repeat-x bottom left;
+	width: 1px;
+	height: 32px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogTopRight {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_tr.png) no-repeat bottom left;
+	width: 28px;
+	height: 32px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogMiddleLeft {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_l.png) repeat-y top right;
+	width: 23px;
+	height: 1px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogMiddleRight {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_r.png) repeat-y top left;
+	width: 28px;
+	height: 1px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogBottomLeft {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_bl.png) no-repeat top right;
+	width: 23px;
+	height: 28px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogBottomCenter {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_b.png) repeat-x top left;
+	width: 1px;
+	height: 28px;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogBottomRight {
+	background: url(../images/backgrounds/error_dialog/roundedcornr_br.png) no-repeat top left;
+	width: 28px;
+	height: 28px;
+}
+
+.xcure-ErrorMessagesDialogUI .Caption {
+	/*Has to be nowrap here as well because IE does not want it to be only in the .xcure-UserDialog class*/
+	white-space: nowrap;
+	background-color: #8B0000;
+	cursor: default;
+	border-bottom: 1px solid #010c22;
+	
+	color: yellow;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.xcure-ErrorMessagesDialogUI .dialogContent {
+	background-color: #8B0000;
+	width: 100%;
+}
+
+.xcure-ErrorMessagesDialogUI-Button {
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-ErrorMessagesDialogUI .gwt-HTML {
+	color: yellow;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/*****************************************************************************************************************************/
+/*MESSAGE RELATED DIALOG STYLES***********************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-SendMessage-Dialog-Title-TextBox{
+	width: 450px;
+}
+
+.xcure-Offline-Message-Body-TextArea {
+	width: 530px;
+}
+
+.xcure-Chat-Private-Message-Title-Scroll-Panel,
+.xcure-Chat-Private-Message-Body-Scroll-Panel,
+.xcure-Chat-Private-Message-Body-Scroll-Panel-Content {
+	width: 480px!important;
+}
+
+.xcure-Chat-Private-Message-Title-Scroll-Panel,
+.xcure-Chat-Private-Message-Body-Scroll-Panel {
+	color: black;
+	border-color: black;
+	border-style: inset;
+	border-width: 3px;
+	padding: 3px;
+	background: none;
+	font-size: 12px !important;
+	white-space: normal; /*Make sure that the content of the scroll panel will have a fixed width */
+}
+
+.xcure-ViewMessageDialogUI-Value-Important {
+	color: black;
+	font-weight: bold;
+}
+
+.xcure-Chat-Private-Message-Title-Scroll-Panel {
+	height: 50px;
+}
+
+.xcure-Chat-Private-Message-Body-Scroll-Panel {
+	height: 250px;
+}
+
+.xcure-MessagesManager-Message-Title-Read-Link,
+.xcure-MessagesManager-Message-Title-Unread-Link,
+.xcure-SendMessage-deleted-Sender-Recipient-Link,
+.xcure-SendMessage-Undefined-Recipient-Link,
+.xcure-SendMessage-Defined-Recipient-Link {
+    text-decoration: underline;
+    display: block;
+    font-size: 12px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-MessagesManager-Message-Title-Read-Link:hover,
+.xcure-MessagesManager-Message-Title-Unread-Link:hover,
+.xcure-SendMessage-deleted-Sender-Recipient-Link:hover,
+.xcure-SendMessage-Undefined-Recipient-Link:hover,
+.xcure-SendMessage-Defined-Recipient-Link:hover {
+	color: blue;
+}
+
+.xcure-MessagesManager-Message-Title-Read-Link {
+    color: black;
+}
+
+.xcure-MessagesManager-Message-Title-Unread-Link {
+    font-weight: bold;
+    color: DarkBlue;
+}
+
+.xcure-SendMessage-deleted-Sender-Recipient-Link {
+    color: white;
+}
+
+.xcure-SendMessage-Undefined-Recipient-Link,
+.xcure-SendMessage-Defined-Recipient-Link {
+    font-weight: bold;
+}
+
+.xcure-SendMessage-Undefined-Recipient-Link {
+    color: DarkBlue;
+}
+
+.xcure-SendMessage-Defined-Recipient-Link {
+    color: DarkBlue;
+}
+
+/*****************************************************************************************************************************/
+/*GENERAL DIALOG RELATED DIALOG STYLES****************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-UserDialog {
+	/*Need to have nowrap because otherwise the IE and some other browsers start wrapping words*/
+	white-space: nowrap;
+	color: black;
+	z-index: 2;
+}
+
+.xcure-UserDialog .dialogTopLeft {
+	background: url(../images/backgrounds/dialog/roundedcornr_tl.png) no-repeat bottom right;
+	width: 23px;
+	height: 32px;
+}
+
+.xcure-UserDialog .dialogTopCenter {
+	background: url(../images/backgrounds/dialog/roundedcornr_t.png) repeat-x bottom left;
+	height: 32px;
+}
+
+.xcure-UserDialog .dialogTopRight {
+	background: url(../images/backgrounds/dialog/roundedcornr_tr.png) no-repeat bottom left;
+	width: 28px;
+	height: 32px;
+}
+
+.xcure-UserDialog .dialogMiddleLeft {
+	background: url(../images/backgrounds/dialog/roundedcornr_l.png) repeat-y top right;
+	width: 23px;
+}
+
+.xcure-UserDialog .dialogMiddleRight {
+	background: url(../images/backgrounds/dialog/roundedcornr_r.png) repeat-y top left;
+	width: 28px;
+}
+
+.xcure-UserDialog .dialogBottomLeft {
+	background: url(../images/backgrounds/dialog/roundedcornr_bl.png) no-repeat top right;
+	width: 23px;
+	height: 28px;
+}
+
+.xcure-UserDialog .dialogBottomCenter {
+	background: url(../images/backgrounds/dialog/roundedcornr_b.png) repeat-x top left;
+	height: 28px;
+}
+
+.xcure-UserDialog .dialogBottomRight {
+	background: url(../images/backgrounds/dialog/roundedcornr_br.png) no-repeat top left;
+	width: 28px;
+	height: 28px;
+}
+
+.xcure-UserDialog .Caption {
+	/*Has to be nowrap here as well because IE does not want it to be only in the .xcure-UserDialog class*/
+	white-space: nowrap;
+	cursor: default;
+	border-bottom: 1px solid #010c22;
+	
+	color: DarkRed;
+	font-size: 12px;
+	font-weight: bold;	
+	text-align: center;
+}
+
+.xcure-UserDialog .dialogContent, .xcure-UserDialog .Caption {
+	background-color: #95a6d0;
+}
+
+.xcure-UserDialog td {
+    /*text-align: right;*/
+}
+
+.xcure-UserDialog .gwt-RadioButton {
+  color: black;
+}
+
+.xcure-UserDialog-RegularField, .xcure-UserDialog-CompulsoryField, .xcure-UserDialog-DisabledField {
+	white-space: nowrap;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+	/*float: left;*/
+}
+
+.xcure-UserDialog-RegularField {
+	color: DarkRed;
+}
+
+.xcure-UserDialog-CompulsoryField {
+	color: DarkRed;
+}
+
+.xcure-UserDialog-DisabledField {
+	color: DarkGray;
+}
+
+.xcure-UserDialog-SuggestionTextBox {
+  color: gray;
+  cursor: default;
+}
+
+.xcure-CaptchaImage {
+  border:1px solid #999;
+  width: 150px;
+  height: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.xcure-UserDialog .gwt-DisclosurePanel {
+  width: 100%;
+  height: 100%;
+}
+
+.xcure-UserDialog .gwt-DisclosurePanel .header {
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.xcure-UserProfileDialogUI-Value {
+	color: black;
+}
+
+.xcure-UserProfileDialogUI-Value-Important {
+	color: black;
+	font-weight: bold;
+}
+
+.xcure-UserDialog-Link-Disabled,
+.xcure-UserDialog-Link,
+.xcure-UserDialog-Link-Important,
+.xcure-UserDialog-Link-Red {
+    text-decoration: underline;
+    /*background-color: black;*/
+    display: block;
+    font-size: 12px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-UserDialog-Link-Disabled {
+    color: gray;
+	text-decoration: none;
+    cursor: default;
+	cursor:not-allowed;
+}
+
+.xcure-UserDialog-Link {
+    color: darkblue;
+}
+
+.xcure-UserDialog-Link-Important {
+    color: #810541;
+    font-weight: bold;
+}
+
+.xcure-UserDialog-Link-Red {
+    color: DarkRed;
+}
+
+.xcure-UserDialog-Link:hover, .xcure-UserDialog-Link-Important:hover, .xcure-UserDialog-Link-Red:hover {
+    color: blue;
+}
+
+.xcure-UserDialog-UserImage {
+	border: 3px solid DarkBlue;
+	width: 100px;
+	height: 75px;
+	display: block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+    cursor: pointer;
+	cursor: hand;
+}
+
+.xcure-UserDialog-UserImage:hover {
+	border: 3px solid blue;
+}
+
+.xcure-UserDialog-ShowImage {
+	border: 3px solid DarkBlue;
+	width: 640px;
+	height: 480px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-RoomDialogUI-ActionButton {
+	display: block;
+	white-space: nowrap;
+	font-size: 12px;
+}
+
+.xcure-UserDialog-ActionButton {
+	white-space: nowrap;
+	/*display: block; If enabled then looses the centered alignment in Chrome*/
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 12px;
+}
+
+.xcure-UserDialog-Text-Progress-Bar-Place-Holder {
+	height: 5px ! important;
+    cursor: default;
+}
+
+.xcure-UserDialog-Text-Progress-Bar {
+	height: 5px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-View-User-Profile-About-Me-Text-Box {
+	/*color: black;*/
+	/*background-color: none;*/
+}
+
+.xcure-Search-Query-TexBox {
+}
+
+.xcure-Chat-Profile-Files-Thumbnail-Panel {
+    border: 1px solid darkblue;
+}
+
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Left,
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Right,
+.xcure-Chat-Profile-Files-Thumbnail-Panel {
+    height: 104px;
+}
+
+.xcure-Chat-Profile-Files-Thumbnail-Panel {
+    width: 300px;
+}
+
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Left,
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Right {
+    border-top: 1px solid darkblue;
+    border-bottom: 1px solid darkblue;
+}
+
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Left {
+    border-left: 1px solid darkblue;
+}
+
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Left:hover {
+    border-left: 1px solid blue;
+}
+
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Right {
+    border-right: 1px solid darkblue;
+}
+
+.xcure-Chat-Profile-Files-Nav-Button-Panel-Right:hover {
+    border-right: 1px solid blue;
+}
+
+/*****************************************************************************************************************************/
+/*PAGED DIALOG RELATED DIALOG STYLES******************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-PagedActionGreedDialogUI-TableLabel {
+  color: #021c50;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.xcure-PagedActionGreedDialogUI-DataTable {
+    border: 1px solid #021c50;
+}
+
+.xcure-PagedActionGreedDialogUI-DataTable td {
+    border: 1px solid #021c50;
+    text-align: center !important; 
+    padding: 3px;
+}
+
+.xcure-UserStatsDialog-Image,
+.xcure-Status-Image,
+.xcure-UserSearch-Status-Image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.xcure-UserStatsDialog-Image {
+	width: 24px;
+	height: 24px;
+	cursor: default;
+}
+
+.xcure-Status-Image {
+	width: 16px;
+	height: 16px;
+}
+
+.xcure-UserSearch-Status-Image {
+	width: 24px;
+	height: 24px;
+}
+
+.xcure-UserStatsDialog-ClearButton {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/*****************************************************************************************************************************/
+/*CHAT MESSAGE RELATED STYLES*************************************************************************************************/
+/*****************************************************************************************************************************/
+
+.xcure-Chat-Message-Content {
+	margin-bottom: -5px; /*Account for the decoration images*/
+	margin-top:    -7px; /*Account for the decoration images*/
+	margin-left:   -5px; /*Account for the decoration images*/
+	padding: 2px;
+	position: relative; /*Is needed to prevent an overlap with the chat message decorations*/
+}
+
+.xcure-Chat-Message-Content-Focus:hover {
+	border: 1px solid DarkBlue;
+	padding: 1px;
+}
+
+.xcure-Chat-Messages-Panel-Bottom-Line {
+	border-bottom: 1px dotted #010C22;
+}
+
+.xcure-Chat-Send-Chat-Message-Dialog table {
+	border-collapse: collapse;
+}
+
+.xcure-Chat-Chat-Room-Table {
+	border-collapse: collapse;
+}
+
+.xcure-Chat-Chat-Room-Table td {
+	padding: 0px;
+	border-spacing:0px;
+}
+
+.xcure-Chat-Send-Chat-Message-Panel {
+	border-left: 1px dotted #010C22 !important;
+	border-right: 1px dotted #010C22 !important;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.xcure-Chat-Recipients-Panel {
+	height: 30px;
+}
+
+.xcure-Chat-User-Name-Avatar {
+	/*position: relative;*/
+	/*top: -82px;*/
+	height: 0px;
+	/*The following make the avatar's name truely invisible*/
+	width: 0px;
+	visibility:hidden;
+	display: none;
+	position:relative;
+}
+
+.xcure-Chat-URL-Image {
+	width: 32px;
+	height: 32px;
+    cursor: pointer;
+    cursor: hand;
+	border: 1px blue solid;
+}
+
+.xcure-Chat-Chat-Messages-FocusPanel {
+    width: 99.9%;
+    height: 99.9%;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-Chat-Smile-Selection-Dialog-Image {
+    /*Center the image*/
+    display: block;
+    margin: auto;
+}
+
+.xcure-Chat-Smile-Selection-Dialog-Label {
+    width: 100%;
+    text-align: center;
+}
+
+.xcure-Chat-Smile-Selection-Dialog-Smile-Entry {
+    margin: 1px;
+    padding: 1px;
+    border: 2px solid blue;
+    color: blue;
+    text-align: center;
+    float: left;
+}
+
+.xcure-Chat-Smile-Selection-Dialog-Smile-Entry:hover {
+    border: 2px solid yellow;
+    /*color: yellow;*/
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-Chat-Smile-Selection-Dialog-ScrollPanel {
+    width: 950px !important;
+    height: 200px !important;
+    overflow-y: auto !important;
+}
+
+.xcure-Chat-Chat-Messages-Vertical-Align-Panel {
+    height: 100%;
+    width: 100%;
+}
+
+.xcure-Chat-Chat-Messages-Table {
+    width: 100%;
+    color: blue;
+}
+
+.xcure-Chat-Chat-Message-Recepient-ScrollPanel {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    color: blue;
+}
+
+.xcure-Chat-Font-Selector-Panel {
+	height: 30px;
+}
+
+.xcure-Chat-Font-Selector-Sample-Label {
+    background-color: #b8d8ff;
+	border: 1px solid darkblue;
+	margin: 1px;
+}
+
+.xcure-Chat-Message-Add-Recepient-Image {
+    display: block;
+    vertical-align: middle;
+    cursor: pointer;
+    cursor: hand;
+    width: 16px;
+    height: 16px;
+}
+
+.xcure-Chat-Chat-Message-Font-Serif {
+    font-family: "Times New Roman", "Times", serif;
+}
+
+.xcure-Chat-Chat-Message-Font-Sans-Serif {
+    font-family: "Arial", "Helvetica", sans-serif;
+}
+
+.xcure-Chat-Chat-Message-Font-Fantasy {
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+
+.xcure-Chat-Chat-Message-Font-Cursive {
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.xcure-Chat-Chat-Message-Font-Monospace {
+    font-family: 'Courier New', "Courier", monospace;
+}
+
+.xcure-Chat-Chat-Message-Font-X-Small {
+    font-size: 8px;
+}
+
+.xcure-Chat-Chat-Message-Font-Small {
+    font-size: 10px;
+}
+
+.xcure-Chat-Chat-Message-Font-Medium {
+    font-size: 12px;
+}
+
+.xcure-Chat-Chat-Message-Font-Large {
+    font-size: 14px;
+}
+
+.xcure-Chat-Chat-Message-Font-X-Large {
+    font-size: 16px;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-Three {
+    color: #8B0000;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-Four {
+    color: #006400;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-Two {
+    color: #00008B;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-Six {
+    color: #D2691E;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-Seven {
+    color: #9933CC;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-Five {
+    color: #FF1493;
+}
+
+.xcure-Chat-Chat-Message-Font-Color-One {
+    color: #000000;
+}
+
+.xcure-Chat-Chat-Messages-Table-Avatar-Left,
+.xcure-Chat-Chat-Messages-Table-Avatar-Right {
+    width: 1%;
+    vertical-align: bottom;
+}
+
+.xcure-Chat-Chat-Messages-Table-Avatar-Left {
+    /*text-align: right;*/
+}
+
+.xcure-Chat-Chat-Messages-Table-Avatar-Right {
+    /*text-align: left;*/
+}
+
+.xcure-Chat-Chat-Messages-Table-Message-Left {
+    width: 99%;
+}
+
+.xcure-Chat-Chat-Messages-Table-Message-Right {
+    width: 99%;
+}
+
+.xcure-Chat-Message-Title {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.xcure-Chat-Info-Message-User-Status {
+    color: black;
+    font-weight: bold;
+}
+
+.xcure-Chat-Info-Message-Avatar,
+.xcure-Chat-Error-Message-Avatar,
+.xcure-Chat-Simple-Message-Avatar,
+.xcure-Chat-Private-Message-Avatar,
+.xcure-Chat-Simple-Message-Aatar-Alert,
+.xcure-Chat-Private-Message-Aatar-Alert {
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.xcure-Chat-Info-Message-Avatar-Panel,
+.xcure-Chat-Info-Message-Avatar,
+.xcure-Chat-Info-Message-Title {
+    color: #006400;
+}
+
+.xcure-Chat-Info-Message-Avatar {
+    border-color: #006400;
+}
+
+.xcure-Chat-Error-Message-Avatar-Panel,
+.xcure-Chat-Error-Message-Avatar,
+.xcure-Chat-Error-Message-Title {
+    color: #8B0000;
+}
+
+.xcure-Chat-Error-Message-Avatar {
+    border-color: #8B0000;
+}
+
+.xcure-Chat-Simple-Message-Fake-Avatar-Panel,
+.xcure-Chat-Simple-Message-Avatar-Panel,
+.xcure-Chat-Simple-Message-Avatar,
+.xcure-Chat-Simple-Message-Title,
+.xcure-Chat-Simple-Message-Aatar-Alert {
+	color: #00008B;
+}
+
+.xcure-Chat-Simple-Message-Avatar,
+.xcure-Chat-Simple-Message-Aatar-Alert {
+    border-color: #C0C0C0;
+}
+
+.xcure-Chat-Private-Message-Fake-Avatar-Panel,
+.xcure-Chat-Private-Message-Avatar-Panel,
+.xcure-Chat-Private-Message-Avatar,
+.xcure-Chat-Private-Message-Title,
+.xcure-Chat-Private-Message-Aatar-Alert {
+    color: #FF1493;
+}
+
+.xcure-Chat-Private-Message-Avatar,
+.xcure-Chat-Private-Message-Aatar-Alert {
+    border-color: #FF1493;
+}
+
+.xcure-Chat-Simple-Message-Avatar,
+.xcure-Chat-Private-Message-Avatar,
+.xcure-Chat-Info-Message-Avatar,
+.xcure-Chat-Error-Message-Avatar,
+.xcure-Chat-Simple-Message-Aatar-Alert,
+.xcure-Chat-Private-Message-Aatar-Alert {
+	display:block;
+	border: 3px outset;
+}
+
+.xcure-Chat-Simple-Message-Fake-Avatar-Panel,
+.xcure-Chat-Private-Message-Fake-Avatar-Panel,
+.xcure-Chat-Info-Message-Avatar-Panel,
+.xcure-Chat-Error-Message-Avatar-Panel {
+    font-size: 12px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.xcure-Chat-Simple-Message-Avatar-Panel,
+.xcure-Chat-Private-Message-Avatar-Panel {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.xcure-Chat-Error-Message-Left, .xcure-Chat-Info-Message-Left, .xcure-Chat-Simple-Message-Left, .xcure-Chat-Private-Message-Left,
+.xcure-Chat-Error-Message-Right, .xcure-Chat-Info-Message-Right, .xcure-Chat-Simple-Message-Right, .xcure-Chat-Private-Message-Right {
+    margin-top: auto;
+    /*margin-bottom: 5px;*/
+    width: 95%;
+}
+
+.xcure-Chat-Error-Message-Left, .xcure-Chat-Info-Message-Left, .xcure-Chat-Simple-Message-Left, .xcure-Chat-Private-Message-Left {
+    text-align: left;
+    margin-right: auto;
+    margin-left: 0px;
+    horizontal-align:left;
+}
+
+.xcure-Chat-Error-Message-Right, .xcure-Chat-Info-Message-Right, .xcure-Chat-Simple-Message-Right, .xcure-Chat-Private-Message-Right {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0px;
+    horizontal-align:right;
+}
+
+.xcure-Chat-Error-Message-Left .middleCenter, .xcure-Chat-Error-Message-Right .middleCenter,
+.xcure-Chat-Info-Message-Left .middleCenter, .xcure-Chat-Info-Message-Right .middleCenter,
+.xcure-Chat-Simple-Message-Left .middleCenter, .xcure-Chat-Simple-Message-Right .middleCenter,
+.xcure-Chat-Private-Message-Left .middleCenter, .xcure-Chat-Private-Message-Right .middleCenter {
+	background: none;
+    background-color: #b8d8ff;
+    text-align: left;
+}
+
+.xcure-Chat-Error-Message-Left .middleCenter, .xcure-Chat-Error-Message-Right .middleCenter {
+    color: #8B0000;
+}
+
+.xcure-Chat-Info-Message-Left .middleCenter, .xcure-Chat-Info-Message-Right .middleCenter {
+    color: #006400;
+}
+
+.xcure-Chat-Simple-Message-Left .middleCenter, .xcure-Chat-Simple-Message-Right .middleCenter {
+    color: #00FF00;
+}
+
+.xcure-Chat-Private-Message-Left .middleCenter, .xcure-Chat-Private-Message-Right .middleCenter {
+    color: #FF0099;
+}
+
+.xcure-Chat-Private-Message-Left .topLeft, .xcure-Chat-Private-Message-Right .topLeft,
+.xcure-Chat-Simple-Message-Left .topLeft, .xcure-Chat-Simple-Message-Right .topLeft,
+.xcure-Chat-Error-Message-Left .topLeft, .xcure-Chat-Error-Message-Right .topLeft,
+.xcure-Chat-Info-Message-Left .topLeft, .xcure-Chat-Info-Message-Right .topLeft {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_tl.png) no-repeat bottom right;
+	width: 19px!important;
+	height: 10px;
+}
+
+.xcure-Chat-Private-Message-Left .topLeftInner, .xcure-Chat-Private-Message-Right .topLeftInner,
+.xcure-Chat-Simple-Message-Left .topLeftInner, .xcure-Chat-Simple-Message-Right .topLeftInner,
+.xcure-Chat-Error-Message-Left .topLeftInner, .xcure-Chat-Error-Message-Right .topLeftInner,
+.xcure-Chat-Info-Message-Left .topLeftInner, .xcure-Chat-Info-Message-Right .topLeftInner {
+    background: none;
+}
+
+.xcure-Chat-Private-Message-Left .topCenter, .xcure-Chat-Private-Message-Right .topCenter,
+.xcure-Chat-Simple-Message-Left .topCenter, .xcure-Chat-Simple-Message-Right .topCenter,
+.xcure-Chat-Error-Message-Left .topCenter, .xcure-Chat-Error-Message-Right .topCenter,
+.xcure-Chat-Info-Message-Left .topCenter, .xcure-Chat-Info-Message-Right .topCenter {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_t.png) repeat-x bottom left;
+	height: 10px;
+}
+
+.xcure-Chat-Private-Message-Left .topRight, .xcure-Chat-Private-Message-Right .topRight,
+.xcure-Chat-Simple-Message-Left .topRight, .xcure-Chat-Simple-Message-Right .topRight,
+.xcure-Chat-Error-Message-Left .topRight, .xcure-Chat-Error-Message-Right .topRight,
+.xcure-Chat-Info-Message-Left .topRight, .xcure-Chat-Info-Message-Right .topRight {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_tr.png) no-repeat bottom left;
+	width: 17px!important;
+	height: 10px;
+}
+
+.xcure-Chat-Private-Message-Left .topRightInner, .xcure-Chat-Private-Message-Right .topRightInner,
+.xcure-Chat-Simple-Message-Left .topRightInner, .xcure-Chat-Simple-Message-Right .topRightInner,
+.xcure-Chat-Error-Message-Left .topRightInner, .xcure-Chat-Error-Message-Right .topRightInner,
+.xcure-Chat-Info-Message-Left .topRightInner, .xcure-Chat-Info-Message-Right .topRightInner {
+    background: none;
+}
+
+.xcure-Chat-Private-Message-Left .middleLeft, .xcure-Chat-Private-Message-Right .middleLeft,
+.xcure-Chat-Simple-Message-Left .middleLeft, .xcure-Chat-Simple-Message-Right .middleLeft,
+.xcure-Chat-Error-Message-Left .middleLeft, .xcure-Chat-Error-Message-Right .middleLeft,
+.xcure-Chat-Info-Message-Left .middleLeft, .xcure-Chat-Info-Message-Right .middleLeft {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_l.png) repeat-y top right;
+	width: 19px;
+}
+
+.xcure-Chat-Private-Message-Left .middleRight, .xcure-Chat-Private-Message-Right .middleRight,
+.xcure-Chat-Simple-Message-Left .middleRight, .xcure-Chat-Simple-Message-Right .middleRight,
+.xcure-Chat-Error-Message-Left .middleRight, .xcure-Chat-Error-Message-Right .middleRight,
+.xcure-Chat-Info-Message-Left .middleRight, .xcure-Chat-Info-Message-Right .middleRight {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_r.png) repeat-y top left;
+	width: 17px;
+}
+
+.xcure-Chat-Private-Message-Left .bottomLeft,
+.xcure-Chat-Simple-Message-Left .bottomLeft,
+.xcure-Chat-Error-Message-Left .bottomLeft,
+.xcure-Chat-Info-Message-Left .bottomLeft {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_pointer_bl.png) no-repeat top right;
+	width: 19px!important;
+	height: 18px;
+}
+
+.xcure-Chat-Private-Message-Right .bottomLeft,
+.xcure-Chat-Simple-Message-Right .bottomLeft,
+.xcure-Chat-Error-Message-Right .bottomLeft,
+.xcure-Chat-Info-Message-Right .bottomLeft {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_bl.png) no-repeat top right;
+	width: 13px!important;
+	height: 18px;
+}
+
+.xcure-Chat-Private-Message-Left .bottomLeftInner, .xcure-Chat-Private-Message-Right .bottomLeftInner,
+.xcure-Chat-Simple-Message-Left .bottomLeftInner, .xcure-Chat-Simple-Message-Right .bottomLeftInner,
+.xcure-Chat-Error-Message-Left .bottomLeftInner, .xcure-Chat-Error-Message-Right .bottomLeftInner,
+.xcure-Chat-Info-Message-Left .bottomLeftInner, .xcure-Chat-Info-Message-Right .bottomLeftInner {
+    background: none;
+}
+
+.xcure-Chat-Private-Message-Left .bottomCenter, .xcure-Chat-Private-Message-Right .bottomCenter,
+.xcure-Chat-Simple-Message-Left .bottomCenter, .xcure-Chat-Simple-Message-Right .bottomCenter,
+.xcure-Chat-Error-Message-Left .bottomCenter, .xcure-Chat-Error-Message-Right .bottomCenter,
+.xcure-Chat-Info-Message-Left .bottomCenter, .xcure-Chat-Info-Message-Right .bottomCenter {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_b.png) repeat-x top left;
+	height: 18px;
+}
+
+.xcure-Chat-Private-Message-Left .bottomRight,
+.xcure-Chat-Simple-Message-Left .bottomRight,
+.xcure-Chat-Error-Message-Left .bottomRight,
+.xcure-Chat-Info-Message-Left .bottomRight {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_br.png) no-repeat top left;
+	width: 17px!important;
+	height: 18px;
+}
+
+.xcure-Chat-Private-Message-Right .bottomRight,
+.xcure-Chat-Simple-Message-Right .bottomRight,
+.xcure-Chat-Error-Message-Right .bottomRight,
+.xcure-Chat-Info-Message-Right .bottomRight {
+	background: url(../images/backgrounds/chat_messages/roundedcornr_pointer_br.png) no-repeat top left;
+	width: 23px!important;
+	height: 18px;
+}
+
+.xcure-Chat-Private-Message-Left .bottomRightInner, .xcure-Chat-Private-Message-Right .bottomRightInner,
+.xcure-Chat-Simple-Message-Left .bottomRightInner, .xcure-Chat-Simple-Message-Right .bottomRightInner,
+.xcure-Chat-Error-Message-Left .bottomRightInner, .xcure-Chat-Error-Message-Right .bottomRightInner,
+.xcure-Chat-Info-Message-Left .bottomRightInner, .xcure-Chat-Info-Message-Right .bottomRightInner {
+    background: none;
+}
+
+/*THE FOLLOWING IS USED FOR CHAT MESSAGE IMAGE PREVIEWING AND VISUALIZATION*/
+/*HTML EXAMPLE OF USAGE IS:
+     <a class="thumbnail" href="#thumb">
+        <img src="media/tree_thumb.jpg" width="100px" height="66px" border="0" />
+        <span>
+              <img src="media/tree.jpg" />
+            <br />Simply beautiful.
+        </span>
+    </a>
+*/
+
+.xcure-Chat-Message-Image-Thumbnail {
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+}
+
+.xcure-Chat-Message-Image-Thumbnail:hover{
+    background-color: transparent;
+}
+
+.xcure-Chat-Message-Image-Thumbnail>img{
+    border: 1px solid darkblue;
+    width: 53px;
+    height: 40px;
+}
+
+/*CSS for enlarged image*/
+.xcure-Chat-Message-Image-Thumbnail>span{
+    height: 100%; /*To make the span element as tall as the small thumbnail image*/
+    visibility: hidden;
+    border-width: 0px;
+}
+
+/*CSS for enlarged image*/
+.xcure-Chat-Message-Image-Thumbnail>span>img{
+    width: 0px;
+    height: 0px;
+}
+
+/*CSS for enlarged image on hover*/
+.xcure-Chat-Message-Image-Thumbnail:hover>span{
+    position: absolute;
+    visibility: visible;
+    top: -35px; /*Make the enlarged image to be shown such that the small thumbnail is in the*/
+                /*left-bottom corner under the enlarged image, does not quite work in Firefox 3.1*/
+    left: 0px;  /*position where enlarged image should offset horizontally */
+    z-index: 50;
+}
+
+.xcure-Chat-Message-Image-Thumbnail:hover>span>img{
+    width: 100px;
+    height: 75px;
+}
+
+.xcure-Chat-Message-Body-TextBase-Dialog {
+	height: 40px;
+}
+
+.xcure-Chat-Message-Body-TextBase-Panel{
+	height: 12px;
+}
